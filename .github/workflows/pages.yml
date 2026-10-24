@@ -1,46 +1,36 @@
-name: Deploy LMS SATUSEHAT v0.7
-
+name: Deploy portal LMS SATUSEHAT (pratinjau)
 on:
   push:
     branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/pages.yml'
+      - 'README.md'
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: lms-pages
   cancel-in-progress: false
-
 jobs:
   validate:
-    name: Verify LMS release
+    name: Validate static preview
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Rebuild and verify LMS release
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat release/part-*.b64 | base64 -d > /tmp/lms-satusehat-v0.7.zip
-          echo "d6b58102df204af4e8f510fe49d4c547355482cb63c40f12f080155559efdea0  /tmp/lms-satusehat-v0.7.zip" | sha256sum -c -
-          unzip -oq /tmp/lms-satusehat-v0.7.zip -d .
-          python3 scripts/validate_release.py
-      - name: Configure GitHub Pages
+      - uses: actions/checkout@v6
+      - name: Verify source manifest and static assets
+        run: node site/validate.cjs
+      - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload website
+      - name: Upload only preview files (never source archives)
         uses: actions/upload-pages-artifact@v4
         with:
-          path: website
-
+          path: site
   deploy:
-    name: Deploy live site
+    name: Deploy to GitHub Pages
     needs: validate
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     permissions:
-      contents: read
       pages: write
       id-token: write
     environment:
