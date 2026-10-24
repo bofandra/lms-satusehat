@@ -1,11 +1,11 @@
-# Portal Pembelajaran Mandiri SATUSEHAT — pratinjau materi 20 Oktober 2026
+# Portal Pembelajaran Mandiri SATUSEHAT — pratinjau materi 25 Oktober 2026
 
 Prototipe **bukan** LMS, kurikulum, atau sertifikasi resmi Kementerian Kesehatan RI.
 
 ## Sumber materi kanonis
-[Folder Kurikulum Pembelajaran SATUSEHAT 2026](https://drive.google.com/drive/folders/1iEfuLRPaojTnP0jCY0SAUgbAn3TMsPWm) memuat 13 modul peserta, 683 slide, 13 infografis, 26 dokumen asesmen (Modul 13: pre-test + ujian akhir), dan worksheet pada Modul 10–13. Katalog ini **mengarah ke berkas peserta Google Drive**, tidak menyalin PPTX/tes/gambar atau file internal ke repository. Berkas diperbarui 20 Oktober 2026.
+[Folder Kurikulum Pembelajaran SATUSEHAT 2026](https://drive.google.com/drive/folders/1iEfuLRPaojTnP0jCY0SAUgbAn3TMsPWm) memuat 13 modul peserta, 683 slide, 13 infografis, 26 dokumen asesmen (Modul 13: pre-test + ujian akhir), dan worksheet pada Modul 10–13. Katalog ini **mengarah ke berkas peserta Google Drive**, tidak menyalin PPTX/tes/gambar atau file internal ke repository. Berkas utama disusun 20 Oktober 2026; ilustrasi Modul 01 direvisi 25 Oktober 2026 untuk versi publik.
 
-## Catatan perubahan dari v0.7
+## Pembaruan keamanan konten 25 Oktober 2026\n- Ilustrasi komik pada Modul 01 slide 9 dan 18 telah diganti dengan penjelasan konseptual untuk publik. File yang dirujuk katalog adalah v1.7.\n- Sumber v1.6 dipindahkan dari folder materi peserta ke arsip review agar tidak lagi menjadi sumber tautan aktif. Perpindahan tidak otomatis mencabut izin langsung yang mungkin pernah diberikan.\n- Pemeriksaan teks saja tidak cukup untuk ilustrasi bergambar. Audit panel visual, asesmen, infografis, dan izin akses harus menjadi gerbang publikasi.\n\n## Catatan perubahan dari v0.7
 Arsip LMS v0.7 sebelumnya hanya 312 slide / 83 bab dan tidak sama dengan 683 slide kurikulum terbaru. Struktur lama tidak lagi digunakan untuk deployment. Modul 13 saat ini membahas **Pengiriman Data USG Puskesmas/MWL**, bukan tata kelola AI. Detail MWL adalah contoh implementasi, bukan pola semua DICOM Router.
 
 ## Deploy otomatis GitHub Pages
