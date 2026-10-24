@@ -1,6 +1,6 @@
 {
   "title": "SATUSEHAT • Portal Pembelajaran Mandiri",
-  "version": "2026-10-20",
+  "version": "2026-10-25",
   "status": "Pratinjau nonresmi — bukan sertifikasi",
   "modules": [
     {
@@ -8,7 +8,7 @@
       "title": "Mengenal SATUSEHAT",
       "group": "Fondasi",
       "slides": 26,
-      "deck": "1o87fyFT2hXkzlAvLShbeWaBEchr9Ml9l",
+      "deck": "1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC",
       "deckType": "pptx",
       "pre": "177XHZwCEQaVr9P9taAgYmyd9wAokHpruworZKipNBKE",
       "post": "1vyPOna7ogUdC6ADdadPixUrUewzafEkLMwGfrUnrjWk",
