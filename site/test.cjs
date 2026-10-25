@@ -66,6 +66,12 @@ async function loadPortal({store = new Map(), rejectFetch = false, initialFetchF
     assert.match(anchor["aria-label"], /Modul (?:0[1-9]|1[0-3])/, "each link must identify its module for screen readers");
   }
   assert.equal(descendants(nodes.catalog).filter(n => n.className === "link-review").length, 5, "five held assessments have no links");
+  const orderedLinks = article => descendants(article).find(n => n.className === "links").children.map(n => n.textContent);
+  const cards = findTag(nodes.catalog, "article");
+  assert.deepEqual(orderedLinks(cards[0]), ["Pre-test", "Materi slide", "Infografis", "Post-test"], "diagnostic before study, assessment last");
+  assert.deepEqual(orderedLinks(cards[2]), ["Pre-test — dalam perbaikan", "Materi slide", "Infografis", "Post-test"], "held pretest stays unavailable but in learning sequence");
+  assert.deepEqual(orderedLinks(cards[12]), ["Pre-test — dalam perbaikan", "Materi slide", "Infografis", "Worksheet", "Ujian akhir"], "USG learning sequence ends in final exam");
+
   nodes.group.value = "Pelayanan";
   nodes.group.fire("change");
   assert.equal(findTag(nodes.catalog, "article").length, 4, "group filter");
