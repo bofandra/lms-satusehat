@@ -32,6 +32,7 @@ for(const v of m){
 for(const f of ["index.html","style.css","app.js","modules.json"]){okay(fs.existsSync(path.join(__dirname,f)),f)}
 const html=fs.readFileSync(path.join(__dirname,"index.html"),"utf8");
 okay(/<meta name="robots" content="noindex,nofollow">/.test(html),"pratinjau must not be indexed");
+okay(html.includes('http-equiv="Content-Security-Policy"')&&html.includes("default-src 'none'")&&html.includes("connect-src 'self'")&&html.includes('name="referrer" content="no-referrer"'),"strict static CSP and no-referrer policy");
 okay(fs.readFileSync(path.join(__dirname,"robots.txt"),"utf8").includes("Disallow: /"),"all crawlers should be discouraged during Pra-UAT");
 okay(!/academy|sertifikasi resmi kami|token rahasia|pasien asli/i.test(html),"editorial/privacy lint");
 okay(!fs.existsSync(path.join(__dirname,"release")),"release package must not be deployed");
