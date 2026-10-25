@@ -35,7 +35,9 @@ okay(!fs.existsSync(path.join(__dirname,"release")),"release package must not be
 const js=fs.readFileSync(path.join(__dirname,"app.js"),"utf8");
 new (require("node:vm").Script)(js,{filename:"site/app.js"});
 okay(js.includes("assessmentHold")&&html.includes("Status Pra-UAT"),"QA gating visible");
-okay(html.includes('id="reset-progress"')&&html.includes('id="results-count"'),"participant controls present");
+okay(html.includes('id="reset-progress"')&&html.includes('id="results-count"')&&html.includes('id="study-filter"'),"participant controls present");
+okay(js.includes('STUDY_FILTER.addEventListener("change",render)')&&js.includes('if(STUDY_FILTER.value)render();else updateProgress()'),"study-filter handles status and checkbox changes");
+okay(html.includes("51 tautan aktif")&&html.includes("belum menggantikan uji buka tanpa login"),"metadata QA caveat remains visible");
 okay(js.includes("localStorage.removeItem(KEY)")&&js.includes("OBJECTIVES[m.id]||"),"local progress reset and objective search remain available");
 for(const f of ["index.html","app.js","modules.json"]){
  okay(!/Apigee|Google Healthcare|Krakend|MongoDB/i.test(fs.readFileSync(path.join(__dirname,f),"utf8")),"no internal vendor detail in "+f);

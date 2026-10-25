@@ -2,6 +2,7 @@
 const CATALOG = document.getElementById("catalog");
 const SEARCH = document.getElementById("search");
 const GROUP = document.getElementById("group");
+const STUDY_FILTER = document.getElementById("study-filter");
 const PROGRESS = document.getElementById("progress");
 const RESET = document.getElementById("reset-progress");
 const RESULTS = document.getElementById("results-count");
@@ -32,7 +33,7 @@ function el(tag,className,text){const node=document.createElement(tag);if(classN
 function link(text,url){const a=el("a","",text);a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a;}
 function render(){
  const q=SEARCH.value.toLocaleLowerCase("id-ID").trim();
- const filtered=modules.filter(m=>(!GROUP.value||m.group===GROUP.value)&&(!q||(m.id+" "+m.title+" "+m.group+" "+(OBJECTIVES[m.id]||"")).toLocaleLowerCase("id-ID").includes(q)));
+ const filtered=modules.filter(m=>(!GROUP.value||m.group===GROUP.value)&&(!STUDY_FILTER.value||(STUDY_FILTER.value==="done"?(progress[m.id]===true):(progress[m.id]!==true)))&&(!q||(m.id+" "+m.title+" "+m.group+" "+(OBJECTIVES[m.id]||"")).toLocaleLowerCase("id-ID").includes(q)));
  CATALOG.replaceChildren();
  RESULTS.textContent=filtered.length+" dari "+modules.length+" modul ditampilkan";
  if(!filtered.length)CATALOG.append(el("p","", "Tidak ada modul yang cocok."));
@@ -56,12 +57,12 @@ function render(){
   card.append(links);
   const label=el("label","completed");
   const check=el("input");check.type="checkbox";check.checked=progress[m.id]===true;check.setAttribute("aria-label","Tandai modul "+m.id+" selesai");
-  check.addEventListener("change",()=>{progress[m.id]=check.checked;try{localStorage.setItem(KEY,JSON.stringify(progress))}catch{}updateProgress()});
+  check.addEventListener("change",()=>{progress[m.id]=check.checked;try{localStorage.setItem(KEY,JSON.stringify(progress))}catch{}if(STUDY_FILTER.value)render();else updateProgress()});
   label.append(check,document.createTextNode("Tandai telah dipelajari (tersimpan hanya di browser)"));card.append(label);CATALOG.append(card);
  }
  updateProgress();
 }
 function updateProgress(){const done=modules.filter(m=>progress[m.id]===true).length;PROGRESS.textContent=done+" dari "+modules.length+" modul ditandai dipelajari pada perangkat ini";RESET.disabled=done===0;}
-SEARCH.addEventListener("input",render);GROUP.addEventListener("change",render);
+SEARCH.addEventListener("input",render);GROUP.addEventListener("change",render);STUDY_FILTER.addEventListener("change",render);
 RESET.addEventListener("click",()=>{progress={};try{localStorage.removeItem(KEY)}catch{}render()});
 fetch("modules.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Gagal mengambil katalog");return r.json()}).then(x=>{if(!x||!Array.isArray(x.modules))throw Error("Format katalog salah");modules=x.modules;render()}).catch(()=>{CATALOG.replaceChildren(el("p","", "Katalog tidak dapat dimuat. Periksa koneksi dan coba buka halaman kembali."))});

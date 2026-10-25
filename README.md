@@ -46,3 +46,9 @@ Kandidat slide versi lebih baru, termasuk Modul 13 v1.6 (klarifikasi order SIMPU
 Lima dokumen asesmen yang tertahan kini memiliki ID `null` di `site/modules.json` sehingga URL-nya tidak dapat direkonstruksi dari berkas publik portal. Validasi CI menolak manifest yang menyertakan ID dokumen tertahan atau menghilangkan ID asesmen yang dinyatakan tersedia. Presentasi PPTX dan worksheet XLSX dibuka melalui Drive file viewer, sedangkan Google Slides asli tetap memakai tautan Slides.
 
 **Penting:** Penghilangan tautan dari portal bukan pengaturan otorisasi; dokumen di Google Drive tetap mengikuti izin berbagi aslinya. Dokumen sumber, salinan Pra-UAT, dan hak akses tidak diubah. Publikasi resmi masih memerlukan validasi SME dan UAT.
+
+## Audit akses berkas dan filter progres — 25 Oktober 2026
+
+- Semua **51 tautan aktif** dalam manifest LMS telah diperiksa memakai metadata izin Google Drive: 13 dek slide, 13 infografis, 21 asesmen yang tidak ditahan, dan 4 worksheet. Ke-51 berkas dapat diidentifikasi dan masing-masing mengandung izin `anyone: reader` saat pemeriksaan.
+- **Batas bukti:** Izin Drive tidak sama dengan UAT browser tanpa login, Android, atau persetujuan publikasi konten; pemeriksaan tersebut masih harus dilakukan. Lima dokumen asesmen QA-held tetap tidak dipublikasikan sebagai tautan aktif.
+- Filter **Status belajar** (semua, belum ditandai, sudah ditandai) bekerja pada penanda lokal browser. Menandai modul tidak menyatakan nilai atau kelulusan, dan tidak mengirim data ke server.
