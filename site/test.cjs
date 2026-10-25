@@ -31,7 +31,7 @@ function descendants(node) {
   return [node, ...node.children.filter(n => n instanceof FakeNode).flatMap(descendants)];
 }
 function findTag(node, tag) { return descendants(node).filter(n => n.tagName === tag); }
-async function loadPortal({store = new Map(), rejectFetch = false} = {}) {
+async function loadPortal({store = new Map(), rejectFetch = false, initialFetchFailures = 0} = {}) {
   const ids = ["catalog", "search", "group", "study-filter", "progress", "reset-progress", "results-count"];
   const nodes = Object.fromEntries(ids.map(id => [id, new FakeNode("section", id)]));
   const document = {
@@ -44,7 +44,10 @@ async function loadPortal({store = new Map(), rejectFetch = false} = {}) {
     setItem(key, value) { store.set(key, String(value)); },
     removeItem(key) { store.delete(key); }
   };
-  const fetch = () => rejectFetch ? Promise.reject(new Error("offline")) : Promise.resolve({ok: true, json: async () => manifest});
+  const fetch = () => {
+    if (rejectFetch || initialFetchFailures-- > 0) return Promise.reject(new Error("offline"));
+    return Promise.resolve({ok: true, json: async () => manifest});
+  };
   vm.runInNewContext(source, {document, localStorage: storage, fetch}, {filename: "app.js"});
   await new Promise(resolve => setImmediate(resolve));
   return {nodes, store};
@@ -99,5 +102,12 @@ async function loadPortal({store = new Map(), rejectFetch = false} = {}) {
   assert.equal(findTag(recovery.nodes.catalog, "article").length, 13, "bad localStorage does not break catalog");
   const offline = await loadPortal({rejectFetch: true});
   assert.match(findTag(offline.nodes.catalog, "p")[0].textContent, /tidak dapat dimuat/i, "clear network error");
-  console.log("PASS LMS regression: 13 modules, 51 links, 5 QA holds, group/search/status filters, local progress/reset, corrupt storage, offline error");
+  assert.equal(findTag(offline.nodes.catalog, "button").length, 1, "retry button available when offline");
+  const transient = await loadPortal({initialFetchFailures: 1});
+  assert.equal(findTag(transient.nodes.catalog, "article").length, 0, "failed load does not display stale catalog");
+  assert.equal(transient.nodes["results-count"].textContent, "Katalog belum tersedia");
+  findTag(transient.nodes.catalog, "button")[0].fire("click");
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(findTag(transient.nodes.catalog, "article").length, 13, "retry restores catalog after connection recovers");
+  console.log("PASS LMS regression: 13 modules, 51 links, 5 QA holds, group/search/status filters, local progress/reset, corrupt storage, offline recovery");
 })().catch(error => {console.error(error); process.exitCode = 1;});
