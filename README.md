@@ -16,8 +16,9 @@ Arsip LMS v0.7 sebelumnya hanya 312 slide / 83 bab dan tidak sama dengan 683 sli
 ## Deploy otomatis GitHub Pages
 Workflow `.github/workflows/pages.yml` pada push ke `main`:
 1. Memeriksa manifest 13 modul, 683 slide, 26 tautan asesmen, 13 infografis, 4 worksheet.
-2. Mengunggah hanya folder `site/`.
-3. Menerbitkan ke GitHub Pages melalui Actions.
+2. Menjalankan pengujian perilaku katalog, pencarian, progres, filter, 51 tautan dan lima asesmen tertahan sebelum deploy.
+3. Mengunggah hanya lima berkas portal dari `site/` dan `.nojekyll` melalui direktori `dist/`; skrip QA tidak diterbitkan.
+4. Menerbitkan ke GitHub Pages melalui Actions.
 
 **Pengaktifan pertama kali harus dilakukan oleh pemilik repository: Settings → Pages → Build and deployment → Source = GitHub Actions.** Tanpa itu, langkah `actions/configure-pages` mengembalikan 404; akun konektor yang digunakan tidak mempunyai hak admin Pages. Setelah pengaktifan, ulangi workflow jika run terakhir sudah gagal.
 
@@ -52,3 +53,11 @@ Lima dokumen asesmen yang tertahan kini memiliki ID `null` di `site/modules.json
 - Semua **51 tautan aktif** dalam manifest LMS telah diperiksa memakai metadata izin Google Drive: 13 dek slide, 13 infografis, 21 asesmen yang tidak ditahan, dan 4 worksheet. Ke-51 berkas dapat diidentifikasi dan masing-masing mengandung izin `anyone: reader` saat pemeriksaan.
 - **Batas bukti:** Izin Drive tidak sama dengan UAT browser tanpa login, Android, atau persetujuan publikasi konten; pemeriksaan tersebut masih harus dilakukan. Lima dokumen asesmen QA-held tetap tidak dipublikasikan sebagai tautan aktif.
 - Filter **Status belajar** (semua, belum ditandai, sudah ditandai) bekerja pada penanda lokal browser. Menandai modul tidak menyatakan nilai atau kelulusan, dan tidak mengirim data ke server.
+
+## QA alur navigasi Modul 09 — 25 Oktober 2026
+
+Empat petunjuk navigasi salah akibat sisipan slide ilustrasi sudah diperbaiki pada **kandidat internal Modul 09 v1.5**: slide 18 merujuk kartu di slide 21, slide 50 dan 54 merujuk pembahasan slide 52, dan slide 56 merujuk pembahasan kuis slide 58. Perubahan diperiksa ulang dari outline native 60 slide. Kandidat belum dipromosikan ke katalog peserta; pengecekan visual mendetail, SME, dan UAT masih terbuka.
+
+## Gerbang regresi perilaku portal
+
+Jalankan `node site/validate.cjs` dan `node site/test.cjs` sebelum deployment. Pengujian kedua menggunakan DOM tiruan untuk memeriksa render 13 modul, 51 link aman, lima asesmen yang ditahan, filter kelompok/topik/status, perubahan progres dan penghapusan lokal, localStorage rusak, serta error pengambilan katalog. **Ini bukan pengganti UAT browser Android atau audit hak akses anonim.**
