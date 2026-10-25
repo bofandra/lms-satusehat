@@ -58,3 +58,18 @@ Jika satu butir P0/P1 tidak terpenuhi, catat temuan dan pertahankan **NO-GO**. P
 - **CI:** validasi otomasi PR berhasil untuk perubahan kode terakhir. Sukses CI bukan bukti uji browser Android, akses anonim dokumen Drive, lisensi visual, ataupun persetujuan SME.
 
 **Status akhir tahap ini: NO-GO publikasi resmi / PR tetap Draft.** Dokumen dan slide kandidat di area review tidak dipromosikan sebagai tautan LMS. 
+
+
+## F. Register uji 51 tautan — dibuat otomatis dari manifest (25 Oktober 2026)
+
+Jalankan dari root repository pada branch Pra-UAT:
+
+```bash
+node site/uat-links.cjs > uat-links.csv
+```
+
+Skrip menulis **56 baris aset + 1 header**: 51 tautan aktif untuk diuji secara anonim, dan 5 asesmen `DITAHAN` yang **tidak** berisi URL. Struktur urutan mengikuti pembelajaran pre-test → slide → infografis → worksheet (jika ada) → post-test / ujian akhir. Skrip gagal apabila jumlah aset, ID asesmen yang ditahan, keunikan URL, atau domain sumber tidak sesuai baseline.
+
+Kolom pengujian sengaja dibiarkan kosong: **Hasil incognito**, **Hasil Android**, **Berkas sesuai?**, dan **Catatan dan bukti**. Isi hanya setelah peninjau benar-benar membuka URL menggunakan browser anonim tanpa akun Google, lalu ulangi pada perangkat Android. Gunakan hasil `BERHASIL`, `LOGIN DIMINTA`, `AKSES DITOLAK`, `SALAH BERKAS`, atau `TIDAK TERBUKA`; sertakan tangkapan layar / perangkat / tanggal pada catatan bila gagal. Untuk asesmen yang ditahan, periksa bahwa label tidak dapat diklik dan ID tidak terlihat pada berkas publik.
+
+**Pembatasan publikasi:** berkas `uat-links.csv` yang dihasilkan hanya untuk peninjau, jangan disimpan di `site/` atau dimasukkan ke allowlist GitHub Pages. Job PR memverifikasi skrip berjalan, **bukan** menandai pengujian browser sebagai selesai.
