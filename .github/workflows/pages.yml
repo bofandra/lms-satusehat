@@ -28,6 +28,8 @@ jobs:
         run: node site/validate.cjs
       - name: Exercise learner catalog interactions
         run: node site/test.cjs
+      - name: Verify 51 active and 5 held resources in UAT export
+        run: node site/uat-links.cjs > /tmp/satusehat-uat-links.csv
   package:
     name: Package approved public-preview allowlist
     if: github.event_name != 'pull_request'
