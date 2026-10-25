@@ -63,6 +63,7 @@ async function loadPortal({store = new Map(), rejectFetch = false, initialFetchF
     assert.match(anchor.href, /^https:\/\/(drive|docs)\.google\.com\//, "allowed provider links");
     assert.equal(anchor.target, "_blank");
     assert.equal(anchor.rel, "noopener noreferrer");
+    assert.match(anchor["aria-label"], /Modul (?:0[1-9]|1[0-3])/, "each link must identify its module for screen readers");
   }
   assert.equal(descendants(nodes.catalog).filter(n => n.className === "link-review").length, 5, "five held assessments have no links");
   nodes.group.value = "Pelayanan";
