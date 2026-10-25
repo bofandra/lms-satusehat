@@ -46,3 +46,15 @@ Jika satu butir P0/P1 tidak terpenuhi, catat temuan dan pertahankan **NO-GO**. P
 | Modul / aset | Reviewer | Versi | Temuan dan bukti | Status |
 |---|---|---|---|---|
 | 01–13 | Belum diisi | Kandidat Pra-UAT | Perlu validasi dan UAT | NO-GO |
+
+
+## E. Bukti perbaikan 25 Oktober 2026 (belum persetujuan konten)
+
+- **Portal:** tautan per modul memiliki label pembaca layar yang menyebut modul; tombol pemulihan saat katalog gagal dimuat diuji; navigasi lompat-ke-konten tersedia.
+- **Keamanan pratinjau:** kebijakan CSP membatasi script, style, fetch, image, dan font ke sumber sendiri yang dibutuhkan; halaman menetapkan no-referrer. Validasi CI memeriksa keberadaan perlindungan. Ini perlu tetap diuji pada browser nyata.
+- **Modul 09 kandidat di area Pra-UAT:** 60 slide terdiri atas 30 halaman materi teks dan 30 halaman visual; semua halaman teks kini memiliki speaker notes. Slide 29 mendapat catatan kewenangan, kebutuhan minimum, audit dan pembedaan akses darurat dari rujukan darurat.
+- **Aksesibilitas gambar kandidat:** 30/30 elemen ilustrasi/komik memiliki alt text kontekstual berbasis topik slide teks terkait. **PENTING: ini belum deskripsi faktual rinci isi gambar**, karena belum ada audit setiap gambar dalam resolusi penuh. Reviewer visual harus mengganti/memperkaya 30 alt text setelah inspeksi visual; bukan bukti gambar sudah aman atau akurat.
+- **Pemeriksaan tekstual Modul 09:** tidak ditemukan nama infrastruktur internal yang dilarang dalam teks slide yang dapat diekstrak. Tidak menyatakan seluruh teks di dalam komik sudah diperiksa.
+- **CI:** validasi otomasi PR berhasil untuk perubahan kode terakhir. Sukses CI bukan bukti uji browser Android, akses anonim dokumen Drive, lisensi visual, ataupun persetujuan SME.
+
+**Status akhir tahap ini: NO-GO publikasi resmi / PR tetap Draft.** Dokumen dan slide kandidat di area review tidak dipromosikan sebagai tautan LMS. 
