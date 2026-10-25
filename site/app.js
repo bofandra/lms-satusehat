@@ -65,4 +65,21 @@ function render(){
 function updateProgress(){const done=modules.filter(m=>progress[m.id]===true).length;PROGRESS.textContent=done+" dari "+modules.length+" modul ditandai dipelajari pada perangkat ini";RESET.disabled=done===0;}
 SEARCH.addEventListener("input",render);GROUP.addEventListener("change",render);STUDY_FILTER.addEventListener("change",render);
 RESET.addEventListener("click",()=>{progress={};try{localStorage.removeItem(KEY)}catch{}render()});
-fetch("modules.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Gagal mengambil katalog");return r.json()}).then(x=>{if(!x||!Array.isArray(x.modules))throw Error("Format katalog salah");modules=x.modules;render()}).catch(()=>{CATALOG.replaceChildren(el("p","", "Katalog tidak dapat dimuat. Periksa koneksi dan coba buka halaman kembali."))});
+function loadCatalog(){
+ CATALOG.replaceChildren(el("p","", "Memuat katalog modul…"));
+ fetch("modules.json",{cache:"no-store"})
+  .then(r=>{if(!r.ok)throw Error("Gagal mengambil katalog");return r.json()})
+  .then(x=>{if(!x||!Array.isArray(x.modules))throw Error("Format katalog salah");modules=x.modules;render()})
+  .catch(()=>{
+   modules=[];
+   RESULTS.textContent="Katalog belum tersedia";
+   PROGRESS.textContent="Progres belum dapat ditampilkan";
+   RESET.disabled=true;
+   const message=el("p","", "Katalog tidak dapat dimuat. Periksa koneksi lalu coba lagi.");
+   const retry=el("button","retry","Coba muat ulang");
+   retry.type="button";
+   retry.addEventListener("click",loadCatalog);
+   CATALOG.replaceChildren(message,retry);
+  });
+}
+loadCatalog();
