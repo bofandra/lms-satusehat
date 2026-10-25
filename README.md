@@ -67,3 +67,9 @@ Jalankan `node site/validate.cjs` dan `node site/test.cjs` sebelum deployment. P
 Perubahan pada `site/**`, workflow, atau README kini diperiksa otomatis saat **pull request menuju `main`**, sebelum dapat digabung. Job PR hanya menjalankan validasi manifest, perlindungan istilah/kredensial pada berkas portal publik, dan tes perilaku interaksi. Job kemas artefak dan deploy GitHub Pages **tidak dijalankan pada PR**; keduanya tetap hanya berjalan setelah perubahan masuk `main` atau workflow diaktifkan manual. Perubahan ini tidak otomatis menerbitkan slide kandidat atau menghapus gerbang NO-GO.
 
 Checklist dan bukti yang harus diselesaikan sebelum rilis resmi terdapat pada [protokol UAT pra-rilis](docs/UAT-PRA-RELEASE.md), mencakup pengujian **51 tautan tanpa login**, Android, 262 soal, panel visual dan notes presenter, lima asesmen tertahan, serta persetujuan SME. Script GitHub tidak dapat mengaudit konten gambar dan izin Google Drive secara menyeluruh.
+
+## Pembaruan alur belajar & audit Modul 09 — 25 Oktober 2026
+
+- Urutan tautan peserta per modul kini: **pre-test diagnostik → slide → infografis → worksheet bila ada → post-test/ujian akhir**. Lima asesmen QA-held tetap tidak dapat diakses. Pengujian perilaku menjaga urutan pada Modul 01, 03, dan 13.
+- Kandidat **Modul 09 v1.6** di Drive telah menjalani audit 60 slide: perbaikan nomor pada 28 ilustrasi, koreksi alur persetujuan di slide 28, serta penggantian cuplikan editorial berisiko pada komik slide 20 dan 40. Perbaikan dilakukan pada kandidat Pra-UAT, **bukan deck peserta dalam `site/modules.json`**.
+- Rincian temuan, bukti render dan risiko overlay pada gambar raster tercatat dalam [QA-MODUL09-VISUAL-2026-10-25.md](docs/QA-MODUL09-VISUAL-2026-10-25.md). Semua ilustrasi, lisensi media, materi klinis dan UAT tetap memerlukan review sampai GO/NO-GO resmi.
