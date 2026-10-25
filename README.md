@@ -61,3 +61,9 @@ Empat petunjuk navigasi salah akibat sisipan slide ilustrasi sudah diperbaiki pa
 ## Gerbang regresi perilaku portal
 
 Jalankan `node site/validate.cjs` dan `node site/test.cjs` sebelum deployment. Pengujian kedua menggunakan DOM tiruan untuk memeriksa render 13 modul, 51 link aman, lima asesmen yang ditahan, filter kelompok/topik/status, perubahan progres dan penghapusan lokal, localStorage rusak, serta error pengambilan katalog. **Ini bukan pengganti UAT browser Android atau audit hak akses anonim.**
+
+## Gerbang pull request & UAT (25 Oktober 2026)
+
+Perubahan pada `site/**`, workflow, atau README kini diperiksa otomatis saat **pull request menuju `main`**, sebelum dapat digabung. Job PR hanya menjalankan validasi manifest, perlindungan istilah/kredensial pada berkas portal publik, dan tes perilaku interaksi. Job kemas artefak dan deploy GitHub Pages **tidak dijalankan pada PR**; keduanya tetap hanya berjalan setelah perubahan masuk `main` atau workflow diaktifkan manual. Perubahan ini tidak otomatis menerbitkan slide kandidat atau menghapus gerbang NO-GO.
+
+Checklist dan bukti yang harus diselesaikan sebelum rilis resmi terdapat pada [protokol UAT pra-rilis](docs/UAT-PRA-RELEASE.md), mencakup pengujian **51 tautan tanpa login**, Android, 262 soal, panel visual dan notes presenter, lima asesmen tertahan, serta persetujuan SME. Script GitHub tidak dapat mengaudit konten gambar dan izin Google Drive secara menyeluruh.
