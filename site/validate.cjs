@@ -48,6 +48,6 @@ for(const f of ["index.html","style.css","app.js","modules.json","robots.txt"]){
  const published=fs.readFileSync(path.join(__dirname,f),"utf8");
  okay(!/Apigee|Google Healthcare|Krakend|MongoDB/i.test(published),"no internal infrastructure name in "+f);
  okay(!/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/i.test(published),"no private key in "+f);
- okay(!/(?:client[_-]?secret|authorization\s*[:=]\s*bearer)\s*[:=]\s*[a-zA-Z0-9_-]{12,}/i.test(published),"no token-like credential in "+f);
+ okay(!/(?:client[_-]?secret\s*[:=]\s*[a-zA-Z0-9_-]{12,}|authorization\s*[:=]\s*bearer\s+[a-zA-Z0-9_.-]{12,})/i.test(published),"no token-like credential in "+f);
 }
 console.log("PASS 13 modules / 683 slides / 21 assessment IDs in public JSON + 5 explicitly null for QA / 13 infographic links / 4 worksheets; syntax and internal term checks pass");
