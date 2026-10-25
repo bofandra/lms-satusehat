@@ -22,10 +22,16 @@ jobs:
         run: node site/validate.cjs
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload only preview files (never source archives)
+      - name: Stage explicit allowlist of public files
+        run: |
+          mkdir -p dist
+          cp site/index.html site/style.css site/app.js site/modules.json site/robots.txt dist/
+          touch dist/.nojekyll
+          test "$(find dist -type f | wc -l)" -eq 6
+      - name: Upload only participant preview files (never QA scripts or source archives)
         uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: dist
   deploy:
     name: Deploy to GitHub Pages
     needs: validate
