@@ -40,7 +40,10 @@
       "post": "1zf7HSSKRucpk23tHa52QagMxjh1GmCvw8UOH71AEj3U",
       "postLabel": "Post-test",
       "infographic": "14maXzDTzJy3ZKSzKjxas4tPwicD0DDpO",
-      "worksheet": null
+      "worksheet": null,
+      "assessmentHold": [
+        "pre"
+      ]
     },
     {
       "id": "04",
@@ -66,7 +69,10 @@
       "post": "1JV_i7T1l3HrAwFc2B-ikRuKB3dXEAv7hpdegRC7x0Kk",
       "postLabel": "Post-test",
       "infographic": "1XL7TwNtoMiPWU3Io1Kh8FWVUm3pYDfkp",
-      "worksheet": null
+      "worksheet": null,
+      "assessmentHold": [
+        "post"
+      ]
     },
     {
       "id": "06",
@@ -92,7 +98,10 @@
       "post": "1vRarQ9KMydHNeAHtwA-8ZD20mabhepE70lo65AdkjzA",
       "postLabel": "Post-test",
       "infographic": "1IbvbOFtCDkFpZEVD6R5y4qBisK8BTnmt",
-      "worksheet": null
+      "worksheet": null,
+      "assessmentHold": [
+        "post"
+      ]
     },
     {
       "id": "08",
@@ -157,7 +166,10 @@
       "post": "1f4QAr9tZxXQ2gariMrkIRkr1PkXpZ2ufKHYq9oVHyQ0",
       "postLabel": "Post-test",
       "infographic": "1oC7nL52Nme0Yr6NmdJ0_10hFXm7G2lWF",
-      "worksheet": "1TCCODlQWDZKVK73mdgnFfoHHgAXnH2jw"
+      "worksheet": "1TCCODlQWDZKVK73mdgnFfoHHgAXnH2jw",
+      "assessmentHold": [
+        "post"
+      ]
     },
     {
       "id": "13",
@@ -170,7 +182,11 @@
       "post": "1GRLkuGfLrSqNrjUtY1oFXVXnBSnYJCrPGAwDOQ-7NxU",
       "postLabel": "Ujian akhir",
       "infographic": "19wG0xjmB2-KoksuKBP1OL9C0zyVAfVzL",
-      "worksheet": "1pajF-pZ4uyu8MmXELwoTJlLWLRe5feNb"
+      "worksheet": "1pajF-pZ4uyu8MmXELwoTJlLWLRe5feNb",
+      "assessmentHold": [
+        "pre"
+      ]
     }
-  ]
+  ],
+  "reviewStatus": "pra-uat"
 }

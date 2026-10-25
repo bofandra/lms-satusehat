@@ -5,7 +5,12 @@ Prototipe **bukan** LMS, kurikulum, atau sertifikasi resmi Kementerian Kesehatan
 ## Sumber materi kanonis
 [Folder Kurikulum Pembelajaran SATUSEHAT 2026](https://drive.google.com/drive/folders/1iEfuLRPaojTnP0jCY0SAUgbAn3TMsPWm) memuat 13 modul peserta, 683 slide, 13 infografis, 26 dokumen asesmen (Modul 13: pre-test + ujian akhir), dan worksheet pada Modul 10–13. Katalog ini **mengarah ke berkas peserta Google Drive**, tidak menyalin PPTX/tes/gambar atau file internal ke repository. Berkas utama disusun 20 Oktober 2026; ilustrasi Modul 01 direvisi 25 Oktober 2026 untuk versi publik.
 
-## Pembaruan keamanan konten 25 Oktober 2026\n- Ilustrasi komik pada Modul 01 slide 9 dan 18 telah diganti dengan penjelasan konseptual untuk publik. File yang dirujuk katalog adalah v1.7.\n- Sumber v1.6 dipindahkan dari folder materi peserta ke arsip review agar tidak lagi menjadi sumber tautan aktif. Perpindahan tidak otomatis mencabut izin langsung yang mungkin pernah diberikan.\n- Pemeriksaan teks saja tidak cukup untuk ilustrasi bergambar. Audit panel visual, asesmen, infografis, dan izin akses harus menjadi gerbang publikasi.\n\n## Catatan perubahan dari v0.7
+## Pembaruan keamanan konten 25 Oktober 2026
+- Ilustrasi komik pada Modul 01 slide 9 dan 18 telah diganti dengan penjelasan konseptual untuk publik. File yang dirujuk katalog adalah v1.7.
+- Sumber v1.6 dipindahkan dari folder materi peserta ke arsip review agar tidak lagi menjadi sumber tautan aktif. Perpindahan tidak otomatis mencabut izin langsung yang mungkin pernah diberikan.
+- Pemeriksaan teks saja tidak cukup untuk ilustrasi bergambar. Audit panel visual, asesmen, infografis, dan izin akses harus menjadi gerbang publikasi.
+
+## Catatan perubahan dari v0.7
 Arsip LMS v0.7 sebelumnya hanya 312 slide / 83 bab dan tidak sama dengan 683 slide kurikulum terbaru. Struktur lama tidak lagi digunakan untuk deployment. Modul 13 saat ini membahas **Pengiriman Data USG Puskesmas/MWL**, bukan tata kelola AI. Detail MWL adalah contoh implementasi, bukan pola semua DICOM Router.
 
 ## Deploy otomatis GitHub Pages
@@ -29,3 +34,9 @@ Calon URL: https://bofandra.github.io/lms-satusehat/ — jangan dianggap aktif s
 - [Playbook SATUSEHAT Rujukan](https://satusehat.kemkes.go.id/platform/docs/id/interoperability/rujukan/)
 - [DICOM Router](https://satusehat.kemkes.go.id/platform/docs/id/dicom-system/dicom-router/)
 - [ImagingStudy](https://satusehat.kemkes.go.id/platform/docs/id/fhir/resources/imaging-study/)
+
+## Peningkatan QA portal — 25 Oktober 2026
+
+Lima tautan asesmen ditahan dari katalog peserta karena opsi jawaban belum lengkap pada dokumen asli: Modul 03 pre-test, Modul 05 post-test, Modul 07 post-test, Modul 12 post-test, Modul 13 pre-test. Lima salinan koreksi tetap berada pada area Pra-UAT; izin dan dokumen Google Drive peserta tidak diubah dalam commit ini. Situs menyediakan 21 tautan asesmen pratinjau lainnya; seluruh 262 soal masih memerlukan validasi jawaban SME.
+
+Kandidat slide versi lebih baru, termasuk Modul 13 v1.6 (klarifikasi order SIMPUS/MWL/ServiceRequest), tidak otomatis dipromosikan menjadi materi peserta. Syarat GO: review substansi klinis/integrasi, audit visual beresolusi penuh, izin akses dan UAT tanpa login, UAT mobile, kemudian pembaruan manifest terkendali. Keberhasilan GitHub Actions bukan persetujuan publikasi.
