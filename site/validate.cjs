@@ -7,6 +7,23 @@ okay(x.version==="2026-10-25","source version");okay(x.reviewStatus==="pra-uat",
 okay(m.reduce((n,v)=>n+["pre","post"].filter(k=>typeof v[k]==="string").length,0)===21,"21 available assessment IDs only");
 okay(x.catalogVisibility==="public-preview-with-QA-holds","public catalog protection");okay(m.length===13,"module count");
 okay(m.find(v=>v.id==="01")?.deck==="1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC","Modul 01 public-safe deck v1.7");
+
+const unapprovedDecks={
+ "08":["1dvPm2LcNblNfy0Yo6fzsWtG6yOdndFyQ"],
+ "09":[
+  "1V1bsZRVGsG4H-2pIFp6LZROZj6MhRbmGpFuZhGR-Oqk", // v1.6
+  "1LMoFw2eYslH7-Q2zQ62JV6Z1nc27_2Py63DT0i6oOzs", // v1.7
+  "1HDVlAuPO7IAN8fnhQ6jk_aYuPGZ2yIBmfNlKx6-QPME" // v1.8
+ ],
+ "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
+};
+// A passing CI run never authorizes promotion. Each known candidate must be
+// cleared deliberately only after visual/accessibility, SME, sharing & UAT sign-off.
+for(const [id,candidates] of Object.entries(unapprovedDecks)){
+ const published=m.find(v=>v.id===id);
+ okay(published&&!candidates.includes(published.deck),"unapproved slide candidate in public-preview manifest: Modul "+id);
+}
+
 okay(m.reduce((sum,v)=>sum+v.slides,0)===683,"slide count");
 okay(m.filter(v=>v.worksheet).length===4,"worksheet count");
 okay(new Set(m.map(v=>v.id)).size===13,"unique modules");
