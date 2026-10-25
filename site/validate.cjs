@@ -4,11 +4,15 @@ const x=JSON.parse(fs.readFileSync(path.join(__dirname,"modules.json"),"utf8"));
 const m=x.modules;
 const okay=(v,what)=>{if(!v)throw Error("INVALID: "+what)};
 okay(x.version==="2026-10-25","source version");okay(x.reviewStatus==="pra-uat","review gate");
+okay(m.reduce((n,v)=>n+["pre","post"].filter(k=>typeof v[k]==="string").length,0)===21,"21 available assessment IDs only");
 okay(x.catalogVisibility==="public-preview-with-QA-holds","public catalog protection");okay(m.length===13,"module count");
 okay(m.find(v=>v.id==="01")?.deck==="1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC","Modul 01 public-safe deck v1.7");
 okay(m.reduce((sum,v)=>sum+v.slides,0)===683,"slide count");
 okay(m.filter(v=>v.worksheet).length===4,"worksheet count");
 okay(new Set(m.map(v=>v.id)).size===13,"unique modules");
+const driveIds=m.flatMap(v=>[v.deck,v.infographic,v.worksheet,v.pre,v.post].filter(Boolean));
+okay(driveIds.every(v=>/^[a-zA-Z0-9_-]+$/.test(v)),"Drive IDs must be opaque identifiers");
+okay(new Set(driveIds).size===driveIds.length,"no duplicate or aliased Drive assets");
 const held=m.flatMap(v=>(v.assessmentHold||[]).map(k=>v.id+":"+k)).sort();
 okay(JSON.stringify(held)===JSON.stringify(["03:pre","05:post","07:post","12:post","13:pre"]),"five known assessments held");
 for(const v of m){
@@ -24,6 +28,8 @@ for(const v of m){
 }
 for(const f of ["index.html","style.css","app.js","modules.json"]){okay(fs.existsSync(path.join(__dirname,f)),f)}
 const html=fs.readFileSync(path.join(__dirname,"index.html"),"utf8");
+okay(/<meta name="robots" content="noindex,nofollow">/.test(html),"pratinjau must not be indexed");
+okay(fs.readFileSync(path.join(__dirname,"robots.txt"),"utf8").includes("Disallow: /"),"all crawlers should be discouraged during Pra-UAT");
 okay(!/academy|sertifikasi resmi kami|token rahasia|pasien asli/i.test(html),"editorial/privacy lint");
 okay(!fs.existsSync(path.join(__dirname,"release")),"release package must not be deployed");
 const js=fs.readFileSync(path.join(__dirname,"app.js"),"utf8");
