@@ -3,3 +3,5 @@
 .link-review{font-size:.85rem;color:#70531c;background:#fff7e4;border:1px dashed #e4c78a;border-radius:7px;padding:6px 10px}
 .qa-status{background:#fff;border:1px solid var(--line);border-left:4px solid var(--sea);border-radius:10px;margin:26px 0 14px;padding:14px 20px}
 .qa-status h2{font-size:1.1rem;margin:0 0 5px}.qa-status p{margin:0;color:var(--muted);font-size:.94rem}
+
+.progress-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.progress-controls button{font:inherit;font-size:.88rem;padding:7px 10px;border:1px solid #bad8db;border-radius:8px;color:var(--sea);background:white;cursor:pointer}.progress-controls button:disabled{opacity:.55;cursor:not-allowed}.result-count{font-size:.9rem;color:var(--muted);margin:0 0 12px}@media(max-width:580px){.head{align-items:flex-start}.progress-controls{width:100%;justify-content:space-between}}

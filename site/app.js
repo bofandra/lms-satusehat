@@ -3,6 +3,8 @@ const CATALOG = document.getElementById("catalog");
 const SEARCH = document.getElementById("search");
 const GROUP = document.getElementById("group");
 const PROGRESS = document.getElementById("progress");
+const RESET = document.getElementById("reset-progress");
+const RESULTS = document.getElementById("results-count");
 const KEY = "satusehat-learning-progress-20261020";
 const OBJECTIVES = {
 "01":"Mengenali tujuan SATUSEHAT dan pertukaran informasi RME.",
@@ -30,8 +32,9 @@ function el(tag,className,text){const node=document.createElement(tag);if(classN
 function link(text,url){const a=el("a","",text);a.href=url;a.target="_blank";a.rel="noopener noreferrer";return a;}
 function render(){
  const q=SEARCH.value.toLocaleLowerCase("id-ID").trim();
- const filtered=modules.filter(m=>(!GROUP.value||m.group===GROUP.value)&&(!q||(m.id+" "+m.title+" "+m.group).toLocaleLowerCase("id-ID").includes(q)));
+ const filtered=modules.filter(m=>(!GROUP.value||m.group===GROUP.value)&&(!q||(m.id+" "+m.title+" "+m.group+" "+(OBJECTIVES[m.id]||"")).toLocaleLowerCase("id-ID").includes(q)));
  CATALOG.replaceChildren();
+ RESULTS.textContent=filtered.length+" dari "+modules.length+" modul ditampilkan";
  if(!filtered.length)CATALOG.append(el("p","", "Tidak ada modul yang cocok."));
  for(const m of filtered){
   const card=el("article","card");card.append(el("div","meta","MODUL "+m.id+"  ·  "+m.group));
@@ -58,6 +61,7 @@ function render(){
  }
  updateProgress();
 }
-function updateProgress(){PROGRESS.textContent=modules.filter(m=>progress[m.id]===true).length+" dari "+modules.length+" modul ditandai dipelajari pada perangkat ini";}
+function updateProgress(){const done=modules.filter(m=>progress[m.id]===true).length;PROGRESS.textContent=done+" dari "+modules.length+" modul ditandai dipelajari pada perangkat ini";RESET.disabled=done===0;}
 SEARCH.addEventListener("input",render);GROUP.addEventListener("change",render);
+RESET.addEventListener("click",()=>{progress={};try{localStorage.removeItem(KEY)}catch{}render()});
 fetch("modules.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Gagal mengambil katalog");return r.json()}).then(x=>{if(!x||!Array.isArray(x.modules))throw Error("Format katalog salah");modules=x.modules;render()}).catch(()=>{CATALOG.replaceChildren(el("p","", "Katalog tidak dapat dimuat. Periksa koneksi dan coba buka halaman kembali."))});
