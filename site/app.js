@@ -39,7 +39,7 @@ function render(){
   card.append(el("p","sub",m.slides+" slide · materi peserta di Google Drive"));
   card.append(el("p","objective","Fokus belajar: "+OBJECTIVES[m.id]));
   const links=el("div","links");
-  links.append(link("Materi slide",presentation(m.deck)));
+  links.append(link("Materi slide",m.deckType==="native"?presentation(m.deck):fileURL(m.deck)));
   links.append(link("Infografis",fileURL(m.infographic)));
   const held=Array.isArray(m.assessmentHold)?m.assessmentHold:[];
   for(const [kind,title,doc] of [["pre","Pre-test",m.pre],["post",m.postLabel,m.post]]){
@@ -49,7 +49,7 @@ function render(){
     links.append(item);
    }else{links.append(link(title,documentURL(doc)));}
   }
-  if(m.worksheet)links.append(link("Worksheet",sheetURL(m.worksheet)));
+  if(m.worksheet)links.append(link("Worksheet",fileURL(m.worksheet)));
   card.append(links);
   const label=el("label","completed");
   const check=el("input");check.type="checkbox";check.checked=progress[m.id]===true;check.setAttribute("aria-label","Tandai modul "+m.id+" selesai");

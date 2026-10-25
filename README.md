@@ -40,3 +40,9 @@ Calon URL: https://bofandra.github.io/lms-satusehat/ — jangan dianggap aktif s
 Lima tautan asesmen ditahan dari katalog peserta karena opsi jawaban belum lengkap pada dokumen asli: Modul 03 pre-test, Modul 05 post-test, Modul 07 post-test, Modul 12 post-test, Modul 13 pre-test. Lima salinan koreksi tetap berada pada area Pra-UAT; izin dan dokumen Google Drive peserta tidak diubah dalam commit ini. Situs menyediakan 21 tautan asesmen pratinjau lainnya; seluruh 262 soal masih memerlukan validasi jawaban SME.
 
 Kandidat slide versi lebih baru, termasuk Modul 13 v1.6 (klarifikasi order SIMPUS/MWL/ServiceRequest), tidak otomatis dipromosikan menjadi materi peserta. Syarat GO: review substansi klinis/integrasi, audit visual beresolusi penuh, izin akses dan UAT tanpa login, UAT mobile, kemudian pembaruan manifest terkendali. Keberhasilan GitHub Actions bukan persetujuan publikasi.
+
+## Penguatan keamanan manifest katalog — 25 Oktober 2026
+
+Lima dokumen asesmen yang tertahan kini memiliki ID `null` di `site/modules.json` sehingga URL-nya tidak dapat direkonstruksi dari berkas publik portal. Validasi CI menolak manifest yang menyertakan ID dokumen tertahan atau menghilangkan ID asesmen yang dinyatakan tersedia. Presentasi PPTX dan worksheet XLSX dibuka melalui Drive file viewer, sedangkan Google Slides asli tetap memakai tautan Slides.
+
+**Penting:** Penghilangan tautan dari portal bukan pengaturan otorisasi; dokumen di Google Drive tetap mengikuti izin berbagi aslinya. Dokumen sumber, salinan Pra-UAT, dan hak akses tidak diubah. Publikasi resmi masih memerlukan validasi SME dan UAT.

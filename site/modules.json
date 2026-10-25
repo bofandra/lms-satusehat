@@ -36,7 +36,7 @@
       "slides": 48,
       "deck": "1dzkd2q6QywkfrG5bfim35npdqdJ5usB-",
       "deckType": "pptx",
-      "pre": "1s2Zlo0J1ewS4N3GiSp0WGkDoxnP_T1Uf6SCPgbyg6CY",
+      "pre": null,
       "post": "1zf7HSSKRucpk23tHa52QagMxjh1GmCvw8UOH71AEj3U",
       "postLabel": "Post-test",
       "infographic": "14maXzDTzJy3ZKSzKjxas4tPwicD0DDpO",
@@ -66,7 +66,7 @@
       "deck": "1H3oP-3rMreNAtnow60_K8832ltBqLzg3",
       "deckType": "pptx",
       "pre": "1iETeXSu4Y3GjmEPsDfLSnEoOmycOUMFdK8eDjAwpK9w",
-      "post": "1JV_i7T1l3HrAwFc2B-ikRuKB3dXEAv7hpdegRC7x0Kk",
+      "post": null,
       "postLabel": "Post-test",
       "infographic": "1XL7TwNtoMiPWU3Io1Kh8FWVUm3pYDfkp",
       "worksheet": null,
@@ -95,7 +95,7 @@
       "deck": "1g2g1LiZDFfCcax3zN6MJbpfqf8YWxsb2",
       "deckType": "pptx",
       "pre": "1jfy2WAu4vgGfBqnMMhS6LQJNo9thSUuqQF6k0S4e8CA",
-      "post": "1vRarQ9KMydHNeAHtwA-8ZD20mabhepE70lo65AdkjzA",
+      "post": null,
       "postLabel": "Post-test",
       "infographic": "1IbvbOFtCDkFpZEVD6R5y4qBisK8BTnmt",
       "worksheet": null,
@@ -163,7 +163,7 @@
       "deck": "124_A0tPsKgmZQzgWu42RvWycAQ6448FH",
       "deckType": "pptx",
       "pre": "1yiGWgfZU1uRPkU8c9Uzs5njLBp0rti6TQ3_lcrJSE_Q",
-      "post": "1f4QAr9tZxXQ2gariMrkIRkr1PkXpZ2ufKHYq9oVHyQ0",
+      "post": null,
       "postLabel": "Post-test",
       "infographic": "1oC7nL52Nme0Yr6NmdJ0_10hFXm7G2lWF",
       "worksheet": "1TCCODlQWDZKVK73mdgnFfoHHgAXnH2jw",
@@ -178,7 +178,7 @@
       "slides": 37,
       "deck": "16jHlmJ42wYRBo8xIpGS1ddhdXQVKj2F1",
       "deckType": "pptx",
-      "pre": "1r6pTGM1lwaQfxtXJWo1-mMUZm94TL8eUYhN1NbY0gG8",
+      "pre": null,
       "post": "1GRLkuGfLrSqNrjUtY1oFXVXnBSnYJCrPGAwDOQ-7NxU",
       "postLabel": "Ujian akhir",
       "infographic": "19wG0xjmB2-KoksuKBP1OL9C0zyVAfVzL",
@@ -188,5 +188,6 @@
       ]
     }
   ],
-  "reviewStatus": "pra-uat"
+  "reviewStatus": "pra-uat",
+  "catalogVisibility": "public-preview-with-QA-holds"
 }
