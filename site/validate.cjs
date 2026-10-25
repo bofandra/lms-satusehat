@@ -10,6 +10,9 @@ okay(m.find(v=>v.id==="01")?.deck==="1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC","Modul 0
 okay(m.reduce((sum,v)=>sum+v.slides,0)===683,"slide count");
 okay(m.filter(v=>v.worksheet).length===4,"worksheet count");
 okay(new Set(m.map(v=>v.id)).size===13,"unique modules");
+okay(m.map(v=>v.id).join(",")===Array.from({length:13},(_,i)=>String(i+1).padStart(2,"0")).join(","),"modules 01–13 must appear in order");
+okay(m.every(v=>Number.isInteger(v.slides)&&v.slides>0),"each module has a positive slide count");
+okay(m.every(v=>typeof v.title==="string"&&v.title.trim().length>3),"each module has a nonempty title");
 const driveIds=m.flatMap(v=>[v.deck,v.infographic,v.worksheet,v.pre,v.post].filter(Boolean));
 okay(driveIds.every(v=>/^[a-zA-Z0-9_-]+$/.test(v)),"Drive IDs must be opaque identifiers");
 okay(new Set(driveIds).size===driveIds.length,"no duplicate or aliased Drive assets");
@@ -39,7 +42,12 @@ okay(html.includes('id="reset-progress"')&&html.includes('id="results-count"')&&
 okay(js.includes('STUDY_FILTER.addEventListener("change",render)')&&js.includes('if(STUDY_FILTER.value)render();else updateProgress()'),"study-filter handles status and checkbox changes");
 okay(html.includes("51 tautan aktif")&&html.includes("belum menggantikan uji buka tanpa login"),"metadata QA caveat remains visible");
 okay(js.includes("localStorage.removeItem(KEY)")&&js.includes("OBJECTIVES[m.id]||"),"local progress reset and objective search remain available");
-for(const f of ["index.html","app.js","modules.json"]){
- okay(!/Apigee|Google Healthcare|Krakend|MongoDB/i.test(fs.readFileSync(path.join(__dirname,f),"utf8")),"no internal vendor detail in "+f);
+// This guards ONLY the six public-preview files. Drive-linked decks and images
+// must receive a separate visual, notes and sharing review before promotion.
+for(const f of ["index.html","style.css","app.js","modules.json","robots.txt"]){
+ const published=fs.readFileSync(path.join(__dirname,f),"utf8");
+ okay(!/Apigee|Google Healthcare|Krakend|MongoDB/i.test(published),"no internal infrastructure name in "+f);
+ okay(!/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/i.test(published),"no private key in "+f);
+ okay(!/(?:client[_-]?secret|authorization\s*[:=]\s*bearer)\s*[:=]\s*[a-zA-Z0-9_-]{12,}/i.test(published),"no token-like credential in "+f);
 }
 console.log("PASS 13 modules / 683 slides / 21 assessment IDs in public JSON + 5 explicitly null for QA / 13 infographic links / 4 worksheets; syntax and internal term checks pass");
