@@ -34,7 +34,7 @@ Jalankan di sesi Chrome incognito yang **tidak** login ke akun Google, dan ulang
 - [ ] Modul 09: persetujuan dan kewenangan akses berbeda dari kewajiban pengiriman RME; hasil awal/final/amended tidak disamakan; data kosong tidak membuktikan layanan tidak dilakukan. Periksa petunjuk latihan slide 18, 50, 54, dan 56 serta rujukannya.
 - [ ] Modul 11: definisi numerator laporan final perlu kebijakan eksplisit untuk status `amended`, `corrected`, dan `appended`, dengan denominator dan episode yang benar. Contoh bukan KPI nasional.
 - [ ] Modul 13: sumber order pemeriksaan adalah SIMPUS/SIMRS; MWL bisa dijalankan Router atau server terpisah; `ServiceRequest`, Accession Number, StudyInstanceUID, `ImagingStudy`, berkas citra, dan `DiagnosticReport` tidak disamakan.
-- [ ] Semua contoh menggunakan identitas rekaan, tanpa Apigee, Google Healthcare, konfigurasi internal, token, dan data pasien asli.
+- [ ] Semua contoh menggunakan identitas rekaan; tidak menampilkan nama infrastruktur internal, konfigurasi privat, kredensial, atau data pasien asli.
 - [ ] Ke-262 soal asesmen ditinjau kunci, distraktor, ketepatan ilmiah, dan rubriknya oleh SME sebelum dilepas.
 
 ## D. Keputusan GO / NO-GO
