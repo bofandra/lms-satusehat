@@ -59,7 +59,7 @@ const js=fs.readFileSync(path.join(__dirname,"app.js"),"utf8");
 new (require("node:vm").Script)(js,{filename:"site/app.js"});
 okay(js.includes("assessmentHold")&&html.includes("Status Pra-UAT"),"QA gating visible");
 okay(html.includes('id="reset-progress"')&&html.includes('id="results-count"')&&html.includes('id="study-filter"'),"participant controls present");
-okay(html.includes('class="skip-link" href="#content"')&&html.includes('<main id="content"'),"keyboard skip navigation remains available");
+okay(html.includes('class="skip-link" href="#content"')&&html.includes('<main id="content" class="wrap" tabindex="-1"'),"keyboard skip navigation remains available");
 okay(!/<div id="catalog"[^>]*aria-live=/.test(html),"catalog must not duplicate the result count screen-reader announcement");
 okay(fs.readFileSync(path.join(__dirname,"style.css"),"utf8").includes(".skip-link:focus"),"skip link must become visible on focus");
 okay(js.includes('STUDY_FILTER.addEventListener("change",render)')&&js.includes('if(STUDY_FILTER.value)render();else updateProgress()'),"study-filter handles status and checkbox changes");
