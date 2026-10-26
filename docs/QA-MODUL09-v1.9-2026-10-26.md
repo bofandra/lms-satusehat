@@ -28,7 +28,7 @@ Untuk ketujuh slide, gambar lama dan footer overlay dihapus dari **struktur slid
 - 60/60 slide memiliki catatan pembicara: tujuh halaman pengganti baru ditambahkan; 17 halaman visual lain yang sebelumnya tidak memiliki notes kini memiliki petunjuk fasilitator spesifik.
 - 17 halaman masih memiliki gambar raster; turun dari 24 gambar pada v1.8.
 - 17/17 gambar yang tertinggal masih mempunyai **alt text generik**, *bukan* deskripsi visual final.
-- Penyaringan teks slide dan speaker notes tidak menemukan `Apigee`, `Google Healthcare`, `Krakend`, atau `MongoDB`. Ini bukan pengganti pemeriksaan teks tertanam dalam gambar raster.
+- Penyaringan teks slide dan speaker notes tidak menemukan istilah infrastruktur internal terlarang yang ada dalam daftar pemeriksaan.  Ini bukan pengganti pemeriksaan teks tertanam dalam gambar raster.
 - Catatan slide 49, 51 dan latihan lain konsisten memakai identitas sintetis; ini belum membuktikan semua piksel raster bebas data pribadi, yang memerlukan inspeksi visual.
 
 ## Register sisa 17 ilustrasi
