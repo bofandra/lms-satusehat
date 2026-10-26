@@ -14,7 +14,8 @@ const unapprovedDecks={
   "1V1bsZRVGsG4H-2pIFp6LZROZj6MhRbmGpFuZhGR-Oqk", // v1.6
   "1LMoFw2eYslH7-Q2zQ62JV6Z1nc27_2Py63DT0i6oOzs", // v1.7
   "1HDVlAuPO7IAN8fnhQ6jk_aYuPGZ2yIBmfNlKx6-QPME", // v1.8
-  "1lxHh1GkFWVvAPB0Zbrk_2NoggZqks8DBIG2ptol1Z4c" // v1.9
+  "1lxHh1GkFWVvAPB0Zbrk_2NoggZqks8DBIG2ptol1Z4c", // v1.9
+  "1rSlMjRIhUtjEKTDT0V78yaC-uwlTzzFCucWGkAju_KQ" // v2.0
  ],
  "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
 };
