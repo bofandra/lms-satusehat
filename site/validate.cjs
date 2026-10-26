@@ -5,7 +5,15 @@ const m=x.modules;
 const okay=(v,what)=>{if(!v)throw Error("INVALID: "+what)};
 okay(x.version==="2026-10-25","source version");okay(x.reviewStatus==="pra-uat","review gate");
 okay(m.reduce((n,v)=>n+["pre","post"].filter(k=>typeof v[k]==="string").length,0)===21,"21 available assessment IDs only");
-okay(x.catalogVisibility==="public-preview-with-QA-holds","public catalog protection");okay(m.length===13,"module count");
+okay(x.catalogVisibility==="public-preview-with-QA-holds","public catalog protection");
+// Release candidate guard: prevent accidentally swapping any of the 21 active
+// assessment IDs before SME sign-off. This is a QA change-detection snapshot,
+// not a cryptographic security control; an approved promotion must update it.
+const assessmentSnapshot=m.map(v=>v.id+":"+(v.pre||"-")+":"+(v.post||"-")).join("|");
+let assessmentFingerprint=2166136261;
+for(let i=0;i<assessmentSnapshot.length;i++)assessmentFingerprint=Math.imul(assessmentFingerprint ^ assessmentSnapshot.charCodeAt(i),16777619)>>>0;
+okay(assessmentSnapshot.length===993&&assessmentFingerprint.toString(16).padStart(8,"0")==="eac2e3ca","assessment catalog changed before SME + UAT approval");
+okay(m.length===13,"module count");
 okay(m.find(v=>v.id==="01")?.deck==="1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC","Modul 01 public-safe deck v1.7");
 
 const unapprovedDecks={
