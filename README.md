@@ -73,3 +73,10 @@ Checklist dan bukti yang harus diselesaikan sebelum rilis resmi terdapat pada [p
 - Urutan tautan peserta per modul kini: **pre-test diagnostik → slide → infografis → worksheet bila ada → post-test/ujian akhir**. Lima asesmen QA-held tetap tidak dapat diakses. Pengujian perilaku menjaga urutan pada Modul 01, 03, dan 13.
 - Kandidat **Modul 09 v1.6** di Drive telah menjalani audit 60 slide: perbaikan nomor pada 28 ilustrasi, koreksi alur persetujuan di slide 28, serta penggantian cuplikan editorial berisiko pada komik slide 20 dan 40. Perbaikan dilakukan pada kandidat Pra-UAT, **bukan deck peserta dalam `site/modules.json`**.
 - Rincian temuan, bukti render dan risiko overlay pada gambar raster tercatat dalam [QA-MODUL09-VISUAL-2026-10-25.md](docs/QA-MODUL09-VISUAL-2026-10-25.md). Semua ilustrasi, lisensi media, materi klinis dan UAT tetap memerlukan review sampai GO/NO-GO resmi.
+
+## Audit struktur 262 soal — 26 Oktober 2026
+
+Pemeriksaan struktur membaca **26 dokumen asesmen**: 21 tautan aktif dan lima salinan QA-held (termasuk koreksi terbaru 13-pre QA6). Seluruhnya mempunyai penomoran berurutan dan tepat empat opsi jawaban per soal. Komposisi benar adalah **25 dokumen × 10 soal + ujian akhir Modul 13 × 12 soal = 262 soal**. Ini bukan penilaian benar/salah, validasi kunci, atau sign-off SME. Lima asesmen tetap ditahan, dan `modules.json` tidak berubah.
+
+- [Register audit 262 soal](docs/QA-X-ASESMEN-262-2026-10-26.md)
+- [Protokol UAT dan GO/NO-GO](docs/UAT-PRA-RELEASE.md)
