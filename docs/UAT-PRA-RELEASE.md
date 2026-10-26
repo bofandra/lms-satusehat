@@ -87,7 +87,8 @@ Temuan QA XII telah diperbaiki melalui **dua dokumen Pra-UAT terpisah**, bukan d
 - [x] Metadata kandidat tidak memuat izin baca umum `anyone` saat pemeriksaan.
 - [x] Validator CI dikunci pada 21 ID asesmen peserta saat ini untuk mencegah promosi tak sengaja.
 - [ ] SME memeriksa kebijakan skor dan mengesahkan petunjuk.
-- [ ] Pemeriksaan visual penuh Google Docs pada desktop dan Android.
+- [x] Pemeriksaan **visual PDF ekspor Google Docs QA9**: kedua dokumen telah diperbaiki dari 3 menjadi 2 halaman, soal tidak terpisah dari pilihan; pengecekan urutan 10 soal dan 40 opsi per dokumen lolos.
+- [ ] **UAT browser desktop dan Android**: verifikasi dokumen asli, zoom, tampilan mobile, aksesibilitas, dan tidak ada pemotongan. PDF saja tidak mengesahkan perangkat nyata.
 - [ ] Uji akses anonim setelah izin materi yang akan dipromosikan ditetapkan.
 - [ ] Update `site/modules.json` dan snapshot validasi **hanya** setelah bukti UAT/SME lengkap.
 
