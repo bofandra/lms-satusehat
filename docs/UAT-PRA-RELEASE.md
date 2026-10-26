@@ -73,3 +73,22 @@ Skrip menulis **56 baris aset + 1 header**: 51 tautan aktif untuk diuji secara a
 Kolom pengujian sengaja dibiarkan kosong: **Hasil incognito**, **Hasil Android**, **Berkas sesuai?**, dan **Catatan dan bukti**. Isi hanya setelah peninjau benar-benar membuka URL menggunakan browser anonim tanpa akun Google, lalu ulangi pada perangkat Android. Gunakan hasil `BERHASIL`, `LOGIN DIMINTA`, `AKSES DITOLAK`, `SALAH BERKAS`, atau `TIDAK TERBUKA`; sertakan tangkapan layar / perangkat / tanggal pada catatan bila gagal. Untuk asesmen yang ditahan, periksa bahwa label tidak dapat diklik dan ID tidak terlihat pada berkas publik.
 
 **Pembatasan publikasi:** berkas `uat-links.csv` yang dihasilkan hanya untuk peninjau, jangan disimpan di `site/` atau dimasukkan ke allowlist GitHub Pages. Job PR memverifikasi skrip berjalan, **bukan** menandai pengujian browser sebagai selesai.
+
+
+## G. Modul 01 — QA9, perbaikan petunjuk (26 Oktober 2026)
+
+Temuan QA XII telah diperbaiki melalui **dua dokumen Pra-UAT terpisah**, bukan dengan menimpa materi peserta:
+- [Pre-test Modul 01 QA9](https://docs.google.com/document/d/1DvShOKDmQO5MsPt8orFJOukS3dlM33SxEd3tYBy8b4E/edit).
+- [Post-test Modul 01 QA9](https://docs.google.com/document/d/1MsqJrAMQWcorT-FR_LLF7VHHglN2BNmJfkwHef5IHZI/edit).
+- [Laporan perbaikan dan verifikasi teks](QA-XIII-MODUL01-PETUNJUK-2026-10-26.md).
+
+- [x] Petunjuk penilaian lengkap dan teks duplikat diganti pada kandidat.
+- [x] Konten soal dan pilihan sama dengan sumber (masing-masing 10 soal + 40 opsi).
+- [x] Metadata kandidat tidak memuat izin baca umum `anyone` saat pemeriksaan.
+- [x] Validator CI dikunci pada 21 ID asesmen peserta saat ini untuk mencegah promosi tak sengaja.
+- [ ] SME memeriksa kebijakan skor dan mengesahkan petunjuk.
+- [ ] Pemeriksaan visual penuh Google Docs pada desktop dan Android.
+- [ ] Uji akses anonim setelah izin materi yang akan dipromosikan ditetapkan.
+- [ ] Update `site/modules.json` dan snapshot validasi **hanya** setelah bukti UAT/SME lengkap.
+
+**Keputusan: NO-GO promosi QA9.** Checklist ini tidak menandai UAT visual, persetujuan substansi, atau keamanan seluruh 262 soal sebagai selesai.
