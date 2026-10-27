@@ -33,7 +33,8 @@ const unapprovedDecks={
  ],
  "11":[
   "1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ", // v2.2 PPTX
-  "11qIpWLEfBZp9hP_UBad985kLcIbUc9W-" // v2.3 PPTX — eligibility/pending, kandidat belum disahkan
+  "11qIpWLEfBZp9hP_UBad985kLcIbUc9W-", // v2.3 PPTX — superseded
+  "1jqdBEzcq1jfcSgdMa10LcM7VIz644gNb" // v2.4 PPTX — footer dan keterbacaan, kandidat belum disahkan
  ],
  "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
 };
