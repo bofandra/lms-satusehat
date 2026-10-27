@@ -13,6 +13,14 @@ const assessmentSnapshot=m.map(v=>v.id+":"+(v.pre||"-")+":"+(v.post||"-")).join(
 let assessmentFingerprint=2166136261;
 for(let i=0;i<assessmentSnapshot.length;i++)assessmentFingerprint=Math.imul(assessmentFingerprint ^ assessmentSnapshot.charCodeAt(i),16777619)>>>0;
 okay(assessmentSnapshot.length===993&&assessmentFingerprint.toString(16).padStart(8,"0")==="eac2e3ca","assessment catalog changed before SME + UAT approval");
+// Freeze the 13 public-preview slide and infographic IDs plus four worksheet IDs.
+// Unlike the historical denylist below, this also catches *unknown* candidate IDs.
+// A signed-off promotion must deliberately revise this baseline together with UAT evidence.
+const assetSnapshot=m.map(v=>[v.id,v.deck,v.deckType,v.infographic,v.worksheet||"-"].join(":")).join("|");
+let assetFingerprint=2166136261;
+for(let i=0;i<assetSnapshot.length;i++)assetFingerprint=Math.imul(assetFingerprint ^ assetSnapshot.charCodeAt(i),16777619)>>>0;
+okay(assetSnapshot.length===1154&&assetFingerprint.toString(16).padStart(8,"0")==="e51ab0ed",
+  "slide/infographic/worksheet catalog changed before SME + UAT approval");
 okay(m.length===13,"module count");
 okay(m.find(v=>v.id==="01")?.deck==="1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC","Modul 01 public-safe deck v1.7");
 
@@ -34,7 +42,8 @@ const unapprovedDecks={
  "11":[
   "1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ", // v2.2 PPTX
   "11qIpWLEfBZp9hP_UBad985kLcIbUc9W-", // v2.3 PPTX — superseded
-  "1jqdBEzcq1jfcSgdMa10LcM7VIz644gNb" // v2.4 PPTX — footer dan keterbacaan, kandidat belum disahkan
+  "1jqdBEzcq1jfcSgdMa10LcM7VIz644gNb", // v2.4 PPTX
+  "1s1fuhvShlvP_lsvmvuG0ohWNqwkGwByB" // v2.5 PPTX — kohort due, kandidat belum disahkan
  ],
  "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
 };
