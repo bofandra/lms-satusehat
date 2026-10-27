@@ -31,7 +31,10 @@ const unapprovedDecks={
   "13_jClxMBYmZl7xuXP6bQlFtE_jjw-JqBZT0QOxsxf1U", // v2.5
   "1vlemdZVuS97qHIqQ3_5tw5dSLLkICdzOuqCyCnNRUE8" // v2.6
  ],
- "11":["1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ"], // v2.2 PPTX, kandidat belum disahkan
+ "11":[
+  "1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ", // v2.2 PPTX
+  "11qIpWLEfBZp9hP_UBad985kLcIbUc9W-" // v2.3 PPTX — eligibility/pending, kandidat belum disahkan
+ ],
  "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
 };
 // A passing CI run never authorizes promotion. Each known candidate must be
