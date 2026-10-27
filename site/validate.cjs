@@ -24,8 +24,14 @@ const unapprovedDecks={
   "1HDVlAuPO7IAN8fnhQ6jk_aYuPGZ2yIBmfNlKx6-QPME", // v1.8
   "1lxHh1GkFWVvAPB0Zbrk_2NoggZqks8DBIG2ptol1Z4c", // v1.9
   "1rSlMjRIhUtjEKTDT0V78yaC-uwlTzzFCucWGkAju_KQ", // v2.0
-  "1MrG-9XSOt79gPoFLy75q09CVAPJo-OL6CHmBoeHioYg" // v2.1
+  "1MrG-9XSOt79gPoFLy75q09CVAPJo-OL6CHmBoeHioYg", // v2.1
+  "1PD2_X8zGSWOqPawux3MwQDjllPQW2bgYHan5jm3jSrM", // v2.2
+  "1dhw3wOF0rpf0R6UsdBP6Ot4vJL-jVsyx2dfYlJYIZdw", // v2.3
+  "1bilP1q6Q7V9xWPAXQMc3ogHRF614_hNajdRGk69auqM", // v2.4
+  "13_jClxMBYmZl7xuXP6bQlFtE_jjw-JqBZT0QOxsxf1U", // v2.5
+  "1vlemdZVuS97qHIqQ3_5tw5dSLLkICdzOuqCyCnNRUE8" // v2.6
  ],
+ "11":["1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ"], // v2.2 PPTX, kandidat belum disahkan
  "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
 };
 // A passing CI run never authorizes promotion. Each known candidate must be
