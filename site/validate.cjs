@@ -43,9 +43,16 @@ const unapprovedDecks={
   "1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ", // v2.2 PPTX
   "11qIpWLEfBZp9hP_UBad985kLcIbUc9W-", // v2.3 PPTX — superseded
   "1jqdBEzcq1jfcSgdMa10LcM7VIz644gNb", // v2.4 PPTX
-  "1s1fuhvShlvP_lsvmvuG0ohWNqwkGwByB" // v2.5 PPTX — kohort due, kandidat belum disahkan
+  "1s1fuhvShlvP_lsvmvuG0ohWNqwkGwByB", // v2.5 PPTX — kohort due
+  "1wTc7iRtg0OLiYGyR4SCAp9EvqtYrbPfa", // v2.6 PPTX — keterbacaan dan kamus KPI
+  "1xQOUi-2dU9-62dPuSSWjySWSjEDb30tI" // v2.7 PPTX — kandidat 27 Oktober
  ],
- "13":["1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr"]
+ "13":[
+  "1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr", // v2.0 PPTX
+  "1uOJ96gvwY6PSZVhJA31G2_YcBkn1ltq4", // v2.1 PPTX
+  "1l5AZlEVqh2K3EfUy371W54kNTweussGf", // v2.2 PPTX
+  "1fQgBupKqT0Zh4_zzK93bxsldeF2iaS0R" // v2.4 PPTX — 6 diagram native, 5 ilustrasi konteks
+ ]
 };
 // A passing CI run never authorizes promotion. Each known candidate must be
 // cleared deliberately only after visual/accessibility, SME, sharing & UAT sign-off.
