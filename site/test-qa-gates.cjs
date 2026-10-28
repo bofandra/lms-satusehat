@@ -31,6 +31,7 @@ try {
   verify("baseline",null,null);
   const deckCases = [
     ["09 v2.6", "09","1vlemdZVuS97qHIqQ3_5tw5dSLLkICdzOuqCyCnNRUE8"],
+    ["09 v2.7", "09","1O7IjFitfskRV-2M0CqvM9IrCRiPCtJhZzakYIGtnnmI"],
     ["11 v2.7", "11","1xQOUi-2dU9-62dPuSSWjySWSjEDb30tI"],
     ["13 v2.4", "13","1fQgBupKqT0Zh4_zzK93bxsldeF2iaS0R"]
   ];
@@ -44,7 +45,7 @@ try {
   verify("changed live assessment 01-pre",m=>{
     m.modules.find(x=>x.id==="01").pre="changedLiveAssessment";
   },/INVALID: assessment catalog changed before SME \+ UAT approval/);
-  console.log("PASS QA-gate mutation regressions: baseline + 3 candidate decks + 2 assessment modifications");
+  console.log("PASS QA-gate mutation regressions: baseline + 4 candidate decks + 2 assessment modifications");
 } finally {
   fs.rmSync(dir,{recursive:true,force:true});
 }
