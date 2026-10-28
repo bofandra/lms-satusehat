@@ -31,7 +31,13 @@ Pemeriksaan menggunakan respons lengkap native Google Slides API, bukan inferens
 - `.github/workflows/pages.yml`: menambahkan eksekusi tes negatif tersebut ke job validate. Job package/deploy tetap **tidak berjalan pada PR**.
 - Verifikasi status CI wajib melihat hasil run GitHub Actions sesudah commit terbaru; menambahkan skrip tidak sama dengan menyatakan CI sudah lulus.
 
-## 4. Tindakan yang masih perlu bukti manusia
+## 4. Temuan P0 — akses domain pada berkas kandidat internal (28 Oktober)
+
+Pemeriksaan `get_file_metadata` Google Drive mengembalikan izin `domain: reader` untuk **tau.ac.id** pada folder [LMS_SATUSEHAT_INTERNAL_REVIEW_2026-10-16](https://drive.google.com/drive/folders/1P9JYkeTYKBSDTlzoqaJKcmAsgtlxo_x_) serta ketiga kandidat berikut: Modul 09 v2.6, Modul 11 v2.7, dan Modul 13 v2.4. Semua juga menunjukkan izin `user: owner`. **Artinya berkas review belum dapat dinyatakan Restricted; akses baca di tingkat domain masih ada.**
+
+**Tindakan korektif P0:** pemilik/pengelola izin harus menghapus izin `tau.ac.id — Reader` pada folder review dan tiap berkas yang mempunyai izin langsung; setelah itu lakukan verifikasi metadata ulang dan uji akses akun yang tidak berhak. Connector yang tersedia pada sesi ini tidak menyediakan aksi pencabutan permission, sehingga **izin belum diubah**. Jangan menganggap memindahkan file ke folder arsip otomatis mencabut izin domain atau izin langsung.
+
+## 5. Tindakan yang masih perlu bukti manusia
 
 1. Validasi **262 soal** (kunci, distraktor, rubrik) oleh SME. Lima asesmen yang tertahan tetap tanpa URL publik.
 2. QA semua ilustrasi/diagram dari seluruh 13 modul, berikut atribusi/lisensi dan ketepatan makna, dengan screenshot resolusi penuh.
