@@ -37,7 +37,8 @@ const unapprovedDecks={
   "1dhw3wOF0rpf0R6UsdBP6Ot4vJL-jVsyx2dfYlJYIZdw", // v2.3
   "1bilP1q6Q7V9xWPAXQMc3ogHRF614_hNajdRGk69auqM", // v2.4
   "13_jClxMBYmZl7xuXP6bQlFtE_jjw-JqBZT0QOxsxf1U", // v2.5
-  "1vlemdZVuS97qHIqQ3_5tw5dSLLkICdzOuqCyCnNRUE8" // v2.6
+  "1vlemdZVuS97qHIqQ3_5tw5dSLLkICdzOuqCyCnNRUE8", // v2.6
+  "1O7IjFitfskRV-2M0CqvM9IrCRiPCtJhZzakYIGtnnmI" // v2.7 — panduan kuis 28 Okt
  ],
  "11":[
   "1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ", // v2.2 PPTX
