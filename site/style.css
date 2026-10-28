@@ -5,3 +5,11 @@
 .qa-status h2{font-size:1.1rem;margin:0 0 5px}.qa-status p{margin:0;color:var(--muted);font-size:.94rem}
 
 .progress-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.progress-controls button{font:inherit;font-size:.88rem;padding:7px 10px;border:1px solid #bad8db;border-radius:8px;color:var(--sea);background:white;cursor:pointer}.progress-controls button:disabled{opacity:.55;cursor:not-allowed}.result-count{font-size:.9rem;color:var(--muted);margin:0 0 12px}@media(max-width:580px){.head{align-items:flex-start}.progress-controls{width:100%;justify-content:space-between}}
+
+/* Navigasi keyboard: tautan lompat tersembunyi sampai mendapat fokus. */
+.skip-link{position:absolute;left:1rem;top:-5rem;z-index:1000;background:#fff;color:#172a43;padding:.65rem .85rem;border:2px solid currentColor;border-radius:.5rem}
+.skip-link:focus{top:1rem}
+.retry{margin-top:.65rem;cursor:pointer}
+
+.study-guide{margin:14px 0 6px;padding:12px 16px;border-radius:10px;background:#eaf3f6;border:1px solid #c8dce3;color:var(--ink);font-size:.92rem}
+.study-guide strong{font-weight:750}

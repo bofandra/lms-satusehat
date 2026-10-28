@@ -5,11 +5,69 @@ const m=x.modules;
 const okay=(v,what)=>{if(!v)throw Error("INVALID: "+what)};
 okay(x.version==="2026-10-25","source version");okay(x.reviewStatus==="pra-uat","review gate");
 okay(m.reduce((n,v)=>n+["pre","post"].filter(k=>typeof v[k]==="string").length,0)===21,"21 available assessment IDs only");
-okay(x.catalogVisibility==="public-preview-with-QA-holds","public catalog protection");okay(m.length===13,"module count");
+okay(x.catalogVisibility==="public-preview-with-QA-holds","public catalog protection");
+// Release candidate guard: prevent accidentally swapping any of the 21 active
+// assessment IDs before SME sign-off. This is a QA change-detection snapshot,
+// not a cryptographic security control; an approved promotion must update it.
+const assessmentSnapshot=m.map(v=>v.id+":"+(v.pre||"-")+":"+(v.post||"-")).join("|");
+let assessmentFingerprint=2166136261;
+for(let i=0;i<assessmentSnapshot.length;i++)assessmentFingerprint=Math.imul(assessmentFingerprint ^ assessmentSnapshot.charCodeAt(i),16777619)>>>0;
+okay(assessmentSnapshot.length===993&&assessmentFingerprint.toString(16).padStart(8,"0")==="eac2e3ca","assessment catalog changed before SME + UAT approval");
+// Freeze the 13 public-preview slide and infographic IDs plus four worksheet IDs.
+// Unlike the historical denylist below, this also catches *unknown* candidate IDs.
+// A signed-off promotion must deliberately revise this baseline together with UAT evidence.
+const assetSnapshot=m.map(v=>[v.id,v.deck,v.deckType,v.infographic,v.worksheet||"-"].join(":")).join("|");
+let assetFingerprint=2166136261;
+for(let i=0;i<assetSnapshot.length;i++)assetFingerprint=Math.imul(assetFingerprint ^ assetSnapshot.charCodeAt(i),16777619)>>>0;
+okay(assetSnapshot.length===1154&&assetFingerprint.toString(16).padStart(8,"0")==="e51ab0ed",
+  "slide/infographic/worksheet catalog changed before SME + UAT approval");
+okay(m.length===13,"module count");
 okay(m.find(v=>v.id==="01")?.deck==="1bseEpcBjZQk64oYcvHQqXAH2cSOGA6AC","Modul 01 public-safe deck v1.7");
+
+const unapprovedDecks={
+ "08":["1dvPm2LcNblNfy0Yo6fzsWtG6yOdndFyQ"],
+ "09":[
+  "1V1bsZRVGsG4H-2pIFp6LZROZj6MhRbmGpFuZhGR-Oqk", // v1.6
+  "1LMoFw2eYslH7-Q2zQ62JV6Z1nc27_2Py63DT0i6oOzs", // v1.7
+  "1HDVlAuPO7IAN8fnhQ6jk_aYuPGZ2yIBmfNlKx6-QPME", // v1.8
+  "1lxHh1GkFWVvAPB0Zbrk_2NoggZqks8DBIG2ptol1Z4c", // v1.9
+  "1rSlMjRIhUtjEKTDT0V78yaC-uwlTzzFCucWGkAju_KQ", // v2.0
+  "1MrG-9XSOt79gPoFLy75q09CVAPJo-OL6CHmBoeHioYg", // v2.1
+  "1PD2_X8zGSWOqPawux3MwQDjllPQW2bgYHan5jm3jSrM", // v2.2
+  "1dhw3wOF0rpf0R6UsdBP6Ot4vJL-jVsyx2dfYlJYIZdw", // v2.3
+  "1bilP1q6Q7V9xWPAXQMc3ogHRF614_hNajdRGk69auqM", // v2.4
+  "13_jClxMBYmZl7xuXP6bQlFtE_jjw-JqBZT0QOxsxf1U", // v2.5
+  "1vlemdZVuS97qHIqQ3_5tw5dSLLkICdzOuqCyCnNRUE8", // v2.6
+  "1O7IjFitfskRV-2M0CqvM9IrCRiPCtJhZzakYIGtnnmI" // v2.7 — panduan kuis 28 Okt
+ ],
+ "11":[
+  "1yNUsu7IMLR9YBkMdQG2odlpH-lbMsxmQ", // v2.2 PPTX
+  "11qIpWLEfBZp9hP_UBad985kLcIbUc9W-", // v2.3 PPTX — superseded
+  "1jqdBEzcq1jfcSgdMa10LcM7VIz644gNb", // v2.4 PPTX
+  "1s1fuhvShlvP_lsvmvuG0ohWNqwkGwByB", // v2.5 PPTX — kohort due
+  "1wTc7iRtg0OLiYGyR4SCAp9EvqtYrbPfa", // v2.6 PPTX — keterbacaan dan kamus KPI
+  "1xQOUi-2dU9-62dPuSSWjySWSjEDb30tI" // v2.7 PPTX — kandidat 27 Oktober
+ ],
+ "13":[
+  "1ajDnVtWpuO3LOj5W3jvRUk0j0VEKVvXr", // v2.0 PPTX
+  "1uOJ96gvwY6PSZVhJA31G2_YcBkn1ltq4", // v2.1 PPTX
+  "1l5AZlEVqh2K3EfUy371W54kNTweussGf", // v2.2 PPTX
+  "1fQgBupKqT0Zh4_zzK93bxsldeF2iaS0R" // v2.4 PPTX — 6 diagram native, 5 ilustrasi konteks
+ ]
+};
+// A passing CI run never authorizes promotion. Each known candidate must be
+// cleared deliberately only after visual/accessibility, SME, sharing & UAT sign-off.
+for(const [id,candidates] of Object.entries(unapprovedDecks)){
+ const published=m.find(v=>v.id===id);
+ okay(published&&!candidates.includes(published.deck),"unapproved slide candidate in public-preview manifest: Modul "+id);
+}
+
 okay(m.reduce((sum,v)=>sum+v.slides,0)===683,"slide count");
 okay(m.filter(v=>v.worksheet).length===4,"worksheet count");
 okay(new Set(m.map(v=>v.id)).size===13,"unique modules");
+okay(m.map(v=>v.id).join(",")===Array.from({length:13},(_,i)=>String(i+1).padStart(2,"0")).join(","),"modules 01–13 must appear in order");
+okay(m.every(v=>Number.isInteger(v.slides)&&v.slides>0),"each module has a positive slide count");
+okay(m.every(v=>typeof v.title==="string"&&v.title.trim().length>3),"each module has a nonempty title");
 const driveIds=m.flatMap(v=>[v.deck,v.infographic,v.worksheet,v.pre,v.post].filter(Boolean));
 okay(driveIds.every(v=>/^[a-zA-Z0-9_-]+$/.test(v)),"Drive IDs must be opaque identifiers");
 okay(new Set(driveIds).size===driveIds.length,"no duplicate or aliased Drive assets");
@@ -29,6 +87,7 @@ for(const v of m){
 for(const f of ["index.html","style.css","app.js","modules.json"]){okay(fs.existsSync(path.join(__dirname,f)),f)}
 const html=fs.readFileSync(path.join(__dirname,"index.html"),"utf8");
 okay(/<meta name="robots" content="noindex,nofollow">/.test(html),"pratinjau must not be indexed");
+okay(html.includes('http-equiv="Content-Security-Policy"')&&html.includes("default-src 'none'")&&html.includes("connect-src 'self'")&&html.includes('name="referrer" content="no-referrer"'),"strict static CSP and no-referrer policy");
 okay(fs.readFileSync(path.join(__dirname,"robots.txt"),"utf8").includes("Disallow: /"),"all crawlers should be discouraged during Pra-UAT");
 okay(!/academy|sertifikasi resmi kami|token rahasia|pasien asli/i.test(html),"editorial/privacy lint");
 okay(!fs.existsSync(path.join(__dirname,"release")),"release package must not be deployed");
@@ -36,10 +95,18 @@ const js=fs.readFileSync(path.join(__dirname,"app.js"),"utf8");
 new (require("node:vm").Script)(js,{filename:"site/app.js"});
 okay(js.includes("assessmentHold")&&html.includes("Status Pra-UAT"),"QA gating visible");
 okay(html.includes('id="reset-progress"')&&html.includes('id="results-count"')&&html.includes('id="study-filter"'),"participant controls present");
+okay(html.includes('class="skip-link" href="#content"')&&html.includes('<main id="content" class="wrap" tabindex="-1"'),"keyboard skip navigation remains available");
+okay(!/<div id="catalog"[^>]*aria-live=/.test(html),"catalog must not duplicate the result count screen-reader announcement");
+okay(fs.readFileSync(path.join(__dirname,"style.css"),"utf8").includes(".skip-link:focus"),"skip link must become visible on focus");
 okay(js.includes('STUDY_FILTER.addEventListener("change",render)')&&js.includes('if(STUDY_FILTER.value)render();else updateProgress()'),"study-filter handles status and checkbox changes");
 okay(html.includes("51 tautan aktif")&&html.includes("belum menggantikan uji buka tanpa login"),"metadata QA caveat remains visible");
 okay(js.includes("localStorage.removeItem(KEY)")&&js.includes("OBJECTIVES[m.id]||"),"local progress reset and objective search remain available");
-for(const f of ["index.html","app.js","modules.json"]){
- okay(!/Apigee|Google Healthcare|Krakend|MongoDB/i.test(fs.readFileSync(path.join(__dirname,f),"utf8")),"no internal vendor detail in "+f);
+// This guards ONLY the six public-preview files. Drive-linked decks and images
+// must receive a separate visual, notes and sharing review before promotion.
+for(const f of ["index.html","style.css","app.js","modules.json","robots.txt"]){
+ const published=fs.readFileSync(path.join(__dirname,f),"utf8");
+ okay(!/Apigee|Google Healthcare|Krakend|MongoDB/i.test(published),"no internal infrastructure name in "+f);
+ okay(!/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/i.test(published),"no private key in "+f);
+ okay(!/(?:client[_-]?secret\s*[:=]\s*[a-zA-Z0-9_-]{12,}|authorization\s*[:=]\s*bearer\s+[a-zA-Z0-9_.-]{12,})/i.test(published),"no token-like credential in "+f);
 }
 console.log("PASS 13 modules / 683 slides / 21 assessment IDs in public JSON + 5 explicitly null for QA / 13 infographic links / 4 worksheets; syntax and internal term checks pass");
